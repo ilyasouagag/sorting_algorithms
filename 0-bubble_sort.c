@@ -14,6 +14,11 @@ void print_array(const int *array, size_t size)
     }
     printf("\n");
 }
+/**
+ * bubble_sort - sort array with the bubble sort algotrithm
+ * @array: array of integers
+ * @size: size of the array of integers
+ */
 void bubble_sort(int *array, size_t size)
 {
     size_t i, j;
