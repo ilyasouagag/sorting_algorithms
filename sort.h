@@ -31,5 +31,7 @@ void shell_sort_helper(int *array, size_t size, int *gaps, int count);
 int generate_gaps(size_t size, int *gaps);
 void cocktail_sort_list(listint_t **list);
 void counting_sort(int array[], size_t size);
-
+void merge_sort_recursive(int *array, size_t size);
+void mer(int *array, size_t size, int *left, size_t ls, int *right, size_t rs);
+void merge_sort(int *array, size_t size);
 #endif
