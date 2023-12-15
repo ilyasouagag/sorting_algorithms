@@ -1,5 +1,4 @@
 #include "sort.h"
-#include <unistd.h>
 
 /**
  * mer - merge 2 sorted arrays
@@ -18,10 +17,9 @@ void mer(int *array, size_t size, int *left, size_t ls, int *right, size_t rs)
 	temp = malloc(size * sizeof(int));
 	if (temp == NULL)
 		return;
-
-	write(1, "Merging...\n[left]: ", 18);
+	printf("Merging...\n[left]: ");
 	print_array(left, ls);
-	write(1, "[right]: ", 9);
+	printf("[right]: ");
 	print_array(right, rs);
 
 	while (i < ls && j < rs)
@@ -38,7 +36,7 @@ void mer(int *array, size_t size, int *left, size_t ls, int *right, size_t rs)
 	for (i = 0; i < size; i++)
 		array[i] = temp[i];
 
-	write(1, "[Done]: ", 8);
+	printf("[Done]: ");
 	print_array(array, size);
 
 	free(temp);
@@ -60,9 +58,9 @@ void merge_sort_recursive(int *array, size_t size)
 		left = array;
 		right = array + mid;
 
-		write(1, "Merging...\n[left]: ", 18);
+		printf("Merging...\n[left]: ");
 		print_array(left, mid);
-		write(1, "[right]: ", 9);
+		printf("[right]: ");
 		print_array(right, size - mid);
 
 		merge_sort_recursive(left, mid);
