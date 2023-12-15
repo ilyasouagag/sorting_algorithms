@@ -1,4 +1,5 @@
 #include "sort.h"
+
 /**
  * partition - Helper function for quicksort algorithm that partitions the
  * array into two segments: elements less than or equal to the pivot,
@@ -12,23 +13,31 @@
  */
 size_t partition(int *array, size_t start, size_t finish, size_t size)
 {
-	int pivot = array[finish], tmp;
-	size_t i = start - 1, j;
+	int *pivot, prev, curr, tmp;
 
-	for (j = start; j <= finish - 1; j++)
-		if (array[j] <= pivot)
+	pivot = array + finish;
+	for (prev = curr = start; curr < (int)finish; curr++)
+		if (array[curr] < *pivot)
 		{
-			i++;
-			tmp = array[i];
-			array[i] = array[j];
-			array[j] = tmp;
+			if (prev < curr)
+			{
+				tmp = array[curr];
+				array[curr] = array[prev];
+				array[prev] = tmp;
+				print_array(array, size);
+			}
+			prev++;
 		}
-	print_array(array, size);
-	tmp = array[i + 1];
-	array[i + 1] = array[finish];
-	array[finish] = tmp;
 
-	return (i + 1);
+	if (array[prev] > *pivot)
+	{
+		tmp = array[prev];
+		array[prev] = *pivot;
+		*pivot = tmp;
+		print_array(array, size);
+	}
+
+	return (prev);
 }
 
 /**
@@ -60,6 +69,7 @@ void quick_sort_helper(int *array, size_t start, size_t finish, size_t size)
  */
 void quick_sort(int *array, size_t size)
 {
-	if (size > 0)
-		quick_sort_helper(array, 0, size - 1, size);
+	if (array == NULL || size < 2)
+		return;
+	quick_sort_helper(array, 0, size - 1, size);
 }

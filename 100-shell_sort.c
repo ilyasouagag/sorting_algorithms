@@ -1,24 +1,18 @@
 #include "sort.h"
-void print_array(const int *array, size_t size)
-{
-	size_t i;
 
-	i = 0;
-	while (array && i < size)
-	{
-		if (i > 0)
-			printf(", ");
-		printf("%d", array[i]);
-		++i;
-	}
-	printf("\n");
-}
-
-void shellsort(int array[], size_t size)
+/**
+ * shell_sort - sort an array using the shell sort
+ * algorithm
+ * @array: array to be sorted
+ * @size: size of array to be sorted
+ */
+void shell_sort(int array[], size_t size)
 {
 	size_t h = 1, i, j;
 	int key;
 
+	if (array == NULL || size < 2)
+		return;
 	while (h < size / 3)
 		h = 3 * h + 1;
 
