@@ -29,5 +29,5 @@ size_t partition(int *array, size_t start, size_t finish, size_t size);
 void shell_sort(int *array, size_t size);
 void shell_sort_helper(int *array, size_t size, int *gaps, int count);
 int generate_gaps(size_t size, int *gaps);
-
+void cocktail_sort_list(listint_t **list);
 #endif
