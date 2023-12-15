@@ -1,6 +1,6 @@
 #include "sort.h"
-#include <unistd.h> // Include the necessary header for write function
-#include "sort.h"
+#include <unistd.h>
+
 /**
  * mer - merge 2 sorted arrays
  * @array: original array
