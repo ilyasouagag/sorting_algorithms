@@ -7,37 +7,36 @@
  */
 void counting_sort(int array[], size_t size)
 {
-	int i, max, min, range, *count, *sortedArr;
+	int *count, *sortedArr, max, i;
 
-	max = array[0];
-	min = array[0];
-	for (i = 1; (size_t)i < size; ++i)
-	{
+	if (array == NULL || size < 2)
+		return;
+	sortedArr = malloc(sizeof(int) * size);
+	if (sortedArr == NULL)
+		return;
+	for (int i = 1; i < size; ++i)
 		if (array[i] > max)
 			max = array[i];
-		if (array[i] < min)
-			min = array[i];
-	}
-	range = max - min + 1;
-	count = malloc(sizeof(int) * range);
-	for (i = 0; i < range; ++i)
-		count[i] = 0;
-
-	for (i = 0; (size_t)i < size; ++i)
-		count[array[i] - min]++;
-
-	for (i = 1; i < range; ++i)
-		count[i] += count[i - 1];
-
-	sortedArr = malloc(sizeof(int) * size);
-	for (i = size - 1; i >= 0; --i)
-		sortedArr[--count[array[i] - min]] = array[i];
-
-	for (i = 0; (size_t)i < size; ++i)
+	count = malloc(sizeof(int) * (max + 1));
+	if (count == NULL)
 	{
-		array[i] = sortedArr[i];
+		free(sortedArr);
+		return;
 	}
-	print_array(count, range);
-	free(count);
+	for (i = 0; i < (max + 1); i++)
+		count[i] = 0;
+	for (i = 0; i < (int)size; i++)
+		count[array[i]] += 1;
+	for (i = 0; i < (max + 1); i++)
+		count[i] += count[i - 1];
+	print_array(count, max + 1);
+	for (i = 0; i < (int)size; i++)
+	{
+		sortedArr[count[array[i]] - 1] = array[i];
+		count[array[i]] -= 1;
+	}
+	for (i = 0; i < (int)size; i++)
+		array[i] = sortedArr[i];
 	free(sortedArr);
+	free(count);
 }
