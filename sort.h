@@ -11,7 +11,8 @@
  * @prev: Pointer to the previous element of the list
  * @next: Pointer to the next element of the list
  */
-typedef struct listint_s {
+typedef struct listint_s
+{
   const int n;
   struct listint_s *prev;
   struct listint_s *next;
@@ -33,5 +34,7 @@ void counting_sort(int array[], size_t size);
 void merge_sort_recursive(int *Arr, int *tmpArr, size_t front, size_t back);
 void mer(int *Arr, int *tmpArr, size_t front, size_t mid, size_t back);
 void merge_sort(int *array, size_t size);
+void sift_down(int *array, size_t start, size_t end, size_t size);
 void heap_sort(int *array, size_t size);
+
 #endif
