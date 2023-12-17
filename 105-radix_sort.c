@@ -26,7 +26,7 @@ void countsort(int arr[], int size, int exp)
 {
 
 	int *sortedArr;
-	int i, count[10] = {0};
+	int i, count[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 	sortedArr = malloc(sizeof(int) * size);
 	if (sortedArr == NULL)
