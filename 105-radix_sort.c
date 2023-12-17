@@ -46,6 +46,7 @@ void countsort(int arr[], int size, int exp)
 
 	for (i = 0; i < size; i++)
 		arr[i] = sortedArr[i];
+	free(sortedArr);
 }
 /**
  * radix_sort - function to sort array using the radix sort algo
