@@ -1,8 +1,8 @@
 #ifndef SORT_H
 #define SORT_H
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * struct listint_s - Doubly linked list node
@@ -11,11 +11,10 @@
  * @prev: Pointer to the previous element of the list
  * @next: Pointer to the next element of the list
  */
-typedef struct listint_s
-{
-	const int n;
-	struct listint_s *prev;
-	struct listint_s *next;
+typedef struct listint_s {
+  const int n;
+  struct listint_s *prev;
+  struct listint_s *next;
 } listint_t;
 
 void print_list(const listint_t *list);
@@ -34,5 +33,5 @@ void counting_sort(int array[], size_t size);
 void merge_sort_recursive(int *Arr, int *tmpArr, size_t front, size_t back);
 void mer(int *Arr, int *tmpArr, size_t front, size_t mid, size_t back);
 void merge_sort(int *array, size_t size);
-
+void heap_sort(int *array, size_t size);
 #endif
