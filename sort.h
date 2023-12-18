@@ -13,9 +13,9 @@
  */
 typedef struct listint_s
 {
-  const int n;
-  struct listint_s *prev;
-  struct listint_s *next;
+	const int n;
+	struct listint_s *prev;
+	struct listint_s *next;
 } listint_t;
 
 void print_list(const listint_t *list);
@@ -41,7 +41,7 @@ void countsort(int arr[], int size, int exp);
 void radix_sort(int *array, size_t size);
 void swap(int *x, int *y);
 void bitonic_mer(int *array, size_t size, size_t start, size_t sq,
-                 char flag);
+				 char flag);
 void bitonic_seq(int *array, size_t size, size_t start, size_t sq, char flag);
 void bitonic_sort(int *array, size_t size);
 
