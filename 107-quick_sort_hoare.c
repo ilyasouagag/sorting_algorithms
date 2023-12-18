@@ -1,4 +1,20 @@
 #include "sort.h"
+
+void print_array(const int *array, size_t size)
+{
+    size_t i;
+
+    i = 0;
+    while (array && i < size)
+    {
+        if (i > 0)
+            printf(", ");
+        printf("%d", array[i]);
+        ++i;
+    }
+    printf("\n");
+}
+
 /**
  * partition - Helper function for quicksort algorithm that partitions the
  * array into two segments: elements less than or equal to the pivot,
@@ -33,6 +49,7 @@ size_t hoare_partition(int *array, size_t start, size_t finish, size_t size)
             tmp = array[prev];
             array[prev] = array[next];
             array[next] = tmp;
+            print_array(array, size);
         }
         else
             return next;
@@ -51,14 +68,15 @@ void quick_sort_helper(int *array, size_t start, size_t finish, size_t size)
 {
     size_t pivot;
 
-    if (start >= finish)
-        return;
+    if (start < finish)
+    {
+        pivot = hoare_partition(array, start, finish, size);
 
-    pivot = hoare_partition(array, start, finish, size);
+        if (pivot > 0)
+            quick_sort_helper(array, start, pivot, size);
 
-    if (pivot > 0)
-        quick_sort_helper(array, start, pivot - 1, size);
-    quick_sort_helper(array, pivot + 1, finish, size);
+        quick_sort_helper(array, pivot + 1, finish, size);
+    }
 }
 
 /**
