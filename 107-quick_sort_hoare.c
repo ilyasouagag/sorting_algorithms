@@ -12,32 +12,32 @@
  */
 size_t hoare_partition(int *array, size_t start, size_t finish, size_t size)
 {
-	int *pivot, prev, next, tmp;
+    int *pivot, prev, next, tmp;
 
-	pivot = array + start;
-	prev = start - 1;
-	next = finish + 1;
-	while (1)
-	{
-		do
-		{
-			prev++;
-		} while (array[prev] < *pivot);
-		do
-		{
-			next--;
-		} while (array[next] > *pivot);
+    pivot = array + start;
+    prev = start - 1;
+    next = finish + 1;
+    while (1)
+    {
+        do
+        {
+            prev++;
+        } while (array[prev] < *pivot);
+        do
+        {
+            next--;
+        } while (array[next] > *pivot);
 
-		if (prev < next)
-		{
-			tmp = array[prev];
-			array[prev] = array[next];
-			array[next] = tmp;
-			print_array(array, size);
-		}
-		else
-			return (next);
-	}
+        if (prev < next)
+        {
+            tmp = array[prev];
+            array[prev] = array[next];
+            array[next] = tmp;
+            print_array(array, size);
+        }
+        else
+            return (next);
+    }
 }
 
 /**
@@ -50,17 +50,17 @@ size_t hoare_partition(int *array, size_t start, size_t finish, size_t size)
  */
 void quick_sort_helper_hoare(int *array, size_t start, size_t finish, size_t size)
 {
-	size_t pivot;
+    size_t pivot;
 
-	if (start < finish)
-	{
-		pivot = hoare_partition(array, start, finish, size);
+    if (start < finish)
+    {
+        pivot = hoare_partition(array, start, finish, size);
 
-		if (pivot > 0)
-			quick_sort_helper(array, start, pivot, size);
+        if (pivot > 0)
+            quick_sort_helper_hoare(array, start, pivot, size);
 
-		quick_sort_helper(array, pivot + 1, finish, size);
-	}
+        quick_sort_helper_hoare(array, pivot + 1, finish, size);
+    }
 }
 
 /**
@@ -70,7 +70,7 @@ void quick_sort_helper_hoare(int *array, size_t start, size_t finish, size_t siz
  */
 void quick_sort_hoare(int *array, size_t size)
 {
-	if (array == NULL || size < 2)
-		return;
-	quick_sort_helper(array, 0, size - 1, size);
+    if (array == NULL || size < 2)
+        return;
+    quick_sort_helper_hoare(array, 0, size - 1, size);
 }
