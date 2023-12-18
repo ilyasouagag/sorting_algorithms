@@ -12,9 +12,9 @@
  */
 size_t hoare_partition(int *array, size_t start, size_t finish, size_t size)
 {
-    int *pivot, prev, next, tmp;
+    int pivot, prev, next, tmp;
 
-    pivot = array + start;
+    pivot = array[finish];
     prev = start - 1;
     next = finish + 1;
     while (1)
@@ -22,11 +22,11 @@ size_t hoare_partition(int *array, size_t start, size_t finish, size_t size)
         do
         {
             prev++;
-        } while (array[prev] < *pivot);
+        } while (array[prev] < pivot);
         do
         {
             next--;
-        } while (array[next] > *pivot);
+        } while (array[next] > pivot);
 
         if (prev < next)
         {
@@ -56,8 +56,7 @@ void quick_sort_helper_hoare(int *array, size_t start, size_t finish, size_t siz
     {
         pivot = hoare_partition(array, start, finish, size);
 
-        if (pivot > 0)
-            quick_sort_helper_hoare(array, start, pivot, size);
+        quick_sort_helper_hoare(array, start, pivot, size);
 
         quick_sort_helper_hoare(array, pivot + 1, finish, size);
     }
