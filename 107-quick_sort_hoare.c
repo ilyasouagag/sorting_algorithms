@@ -41,14 +41,14 @@ size_t hoare_partition(int *array, size_t start, size_t finish, size_t size)
 }
 
 /**
- * quick_sort_helper - Helper function for the quicksort algorithm that
+ * quick_sort_helper_hoare - Helper function for the quicksort algorithm that
  * recursively sorts subarrays.
  * @array: The array to be sorted
  * @start: The starting index of the subarray
  * @finish: The ending index of the subarray
  * @size: The size of the array
  */
-void quick_sort_helper(int *array, size_t start, size_t finish, size_t size)
+void quick_sort_helper_hoare(int *array, size_t start, size_t finish, size_t size)
 {
 	size_t pivot;
 
@@ -64,11 +64,11 @@ void quick_sort_helper(int *array, size_t start, size_t finish, size_t size)
 }
 
 /**
- * quick_sort - Sorts an array using the quicksort algorithm
+ * quick_sort_hoare - Sorts an array using the quicksort algorithm
  * @array: The array to be sorted
  * @size: The size of the array
  */
-void quick_sort(int *array, size_t size)
+void quick_sort_hoare(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
 		return;
