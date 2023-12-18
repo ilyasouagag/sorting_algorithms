@@ -1,11 +1,16 @@
 #include "sort.h"
-void swap(int *a, int *b)
+/**
+ * swap - swap 2 ints
+ * @x: first int to be swapped
+ * @y: second int to be swapped
+ */
+void swap(int *x, int *y)
 {
-	int tmp;
+    int tmp;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+    tmp = *x;
+    *x = *y;
+    *y = tmp;
 }
 /**
  * hoare_partition - Helper function for quicksort algorithm that partitions
@@ -20,30 +25,31 @@ void swap(int *a, int *b)
  */
 size_t hoare_partition(int *array, size_t start, size_t finish, size_t size)
 {
-    int pivot, above, below;
+    int pivot, prev, next;
 
+    prev = start - 1;
+    next = finish + 1;
     pivot = array[finish];
-    for (above = start - 1, below = finish + 1; above < below;)
+    while (1)
     {
         do
         {
-            above++;
-        } while (array[above] < pivot);
+            prev++;
+        } while (array[prev] < pivot);
         do
         {
-            below--;
-        } while (array[below] > pivot);
+            next--;
+        } while (array[next] > pivot);
 
-        if (above < below)
+        if (prev < next)
         {
-            swap(array + above, array + below);
+            swap(array + prev, array + next);
             print_array(array, size);
         }
+        else
+            return (prev);
     }
-
-    return (above);
 }
-
 /**
  * quick_sort_helper_hoare - Helper function for the quicksort algorithm that
  * recursively sorts subarrays.
