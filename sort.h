@@ -44,5 +44,5 @@ void bitonic_mer(int *array, size_t size, size_t start, size_t sq,
 				 char flag);
 void bitonic_seq(int *array, size_t size, size_t start, size_t sq, char flag);
 void bitonic_sort(int *array, size_t size);
-
+size_t hoare_partition(int *array, size_t start, size_t finish, size_t size);
 #endif
