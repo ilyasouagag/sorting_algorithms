@@ -1,22 +1,6 @@
 #include "sort.h"
-
-void print_array(const int *array, size_t size)
-{
-    size_t i;
-
-    i = 0;
-    while (array && i < size)
-    {
-        if (i > 0)
-            printf(", ");
-        printf("%d", array[i]);
-        ++i;
-    }
-    printf("\n");
-}
-
 /**
- * partition - Helper function for quicksort algorithm that partitions the
+ * hoare_partition - Helper function for quicksort algorithm that partitions the
  * array into two segments: elements less than or equal to the pivot,
  * and elements greater than the pivot.
  * @array: The array to be partitioned
