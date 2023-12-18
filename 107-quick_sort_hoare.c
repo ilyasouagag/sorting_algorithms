@@ -1,43 +1,5 @@
 #include "sort.h"
-/**
- * partition - Helper function for quicksort algorithm that partitions the
- * array into two segments: elements less than or equal to the pivot,
- * and elements greater than the pivot.
- * @array: The array to be partitioned
- * @start: The starting index of the segment to be partitioned
- * @finish: The ending index of the segment to be partitioned
- * @size: The size of the array
- *
- * Return: The index of the pivot element after partitioning
- */
-size_t partition(int *array, size_t start, size_t finish, size_t size)
-{
-	int *pivot, prev, curr, tmp;
 
-	pivot = array + finish;
-	for (prev = curr = start; curr < (int)finish; curr++)
-		if (array[curr] < *pivot)
-		{
-			if (prev < curr)
-			{
-				tmp = array[curr];
-				array[curr] = array[prev];
-				array[prev] = tmp;
-				print_array(array, size);
-			}
-			prev++;
-		}
-
-	if (array[prev] > *pivot)
-	{
-		tmp = array[prev];
-		array[prev] = *pivot;
-		*pivot = tmp;
-		print_array(array, size);
-	}
-
-	return (prev);
-}
 
 /**
  * quick_sort_helper - Helper function for the quicksort algorithm that
