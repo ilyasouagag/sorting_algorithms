@@ -12,7 +12,7 @@
  */
 size_t hoare_partition(int *array, size_t start, size_t finish, size_t size)
 {
-    int *pivot, prev, next, tmp;
+    int pivot, prev, next, tmp;
 
     pivot = array[finish];
     prev = start - 1;
