@@ -54,9 +54,9 @@ void quick_sort_helper2(int *array, size_t start, size_t finish, size_t size)
 	{
 		pivot = hoare_partition(array, start, finish, size);
 
-		quick_sort_helper2(array, start, pivot, size);
+		quick_sort_helper2(array, start, pivot - 1, size);
 
-		quick_sort_helper2(array, pivot + 1, finish, size);
+		quick_sort_helper2(array, pivot, finish, size);
 	}
 }
 
