@@ -48,7 +48,7 @@ size_t hoare_partition(int *array, size_t start, size_t finish, size_t size)
  * @finish: The ending index of the subarray
  * @size: The size of the array
  */
-void quick_sort_helper_hoare(int *array, size_t start, size_t finish, size_t size)
+void quick_sort_helper2(int *array, size_t start, size_t finish, size_t size)
 {
     size_t pivot;
 
@@ -56,9 +56,9 @@ void quick_sort_helper_hoare(int *array, size_t start, size_t finish, size_t siz
     {
         pivot = hoare_partition(array, start, finish, size);
 
-        quick_sort_helper_hoare(array, start, pivot, size);
+        quick_sort_helper2(array, start, pivot - 1, size);
 
-        quick_sort_helper_hoare(array, pivot + 1, finish, size);
+        quick_sort_helper2(array, pivot, finish, size);
     }
 }
 
@@ -71,5 +71,5 @@ void quick_sort_hoare(int *array, size_t size)
 {
     if (array == NULL || size < 2)
         return;
-    quick_sort_helper_hoare(array, 0, size - 1, size);
+    quick_sort_helper2(array, 0, size - 1, size);
 }
