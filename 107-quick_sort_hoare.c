@@ -6,11 +6,11 @@
  */
 void swap(int *x, int *y)
 {
-    int tmp;
+	int tmp;
 
-    tmp = *x;
-    *x = *y;
-    *y = tmp;
+	tmp = *x;
+	*x = *y;
+	*y = tmp;
 }
 /**
  * hoare_partition - Helper function for quicksort algorithm that partitions
@@ -25,33 +25,31 @@ void swap(int *x, int *y)
  */
 size_t hoare_partition(int *array, size_t start, size_t finish, size_t size)
 {
-    int pivot, prev, next;
+	int pivot, prev, next;
 
-    prev = start - 1;
-    next = finish + 1;
-    pivot = array[finish];
-    while (1)
-    {
-        do
-        {
-            prev++;
-        } while (array[prev] < pivot);
-        do
-        {
-            next--;
-        } while (array[next] > pivot);
+	prev = start - 1;
+	next = finish + 1;
+	pivot = array[finish];
+	while (1)
+	{
+		do {
+			prev++;
+		} while (array[prev] < pivot);
+		do {
+			next--;
+		} while (array[next] > pivot);
 
-        if (prev < next)
-        {
-            swap(array + prev, array + next);
-            print_array(array, size);
-        }
-        else
-            return (prev);
-    }
+		if (prev < next)
+		{
+			swap(array + prev, array + next);
+			print_array(array, size);
+		}
+		else
+			return (prev);
+	}
 }
 /**
- * quick_sort_helper_hoare - Helper function for the quicksort algorithm that
+ * quick_sort_helper2 - Helper function for the quicksort algorithm that
  * recursively sorts subarrays.
  * @array: The array to be sorted
  * @start: The starting index of the subarray
@@ -60,16 +58,16 @@ size_t hoare_partition(int *array, size_t start, size_t finish, size_t size)
  */
 void quick_sort_helper2(int *array, size_t start, size_t finish, size_t size)
 {
-    size_t pivot;
+	size_t pivot;
 
-    if (start < finish)
-    {
-        pivot = hoare_partition(array, start, finish, size);
+	if (start < finish)
+	{
+		pivot = hoare_partition(array, start, finish, size);
 
-        quick_sort_helper2(array, start, pivot - 1, size);
+		quick_sort_helper2(array, start, pivot - 1, size);
 
-        quick_sort_helper2(array, pivot, finish, size);
-    }
+		quick_sort_helper2(array, pivot, finish, size);
+	}
 }
 
 /**
@@ -79,7 +77,7 @@ void quick_sort_helper2(int *array, size_t start, size_t finish, size_t size)
  */
 void quick_sort_hoare(int *array, size_t size)
 {
-    if (array == NULL || size < 2)
-        return;
-    quick_sort_helper2(array, 0, size - 1, size);
+	if (array == NULL || size < 2)
+		return;
+	quick_sort_helper2(array, 0, size - 1, size);
 }
