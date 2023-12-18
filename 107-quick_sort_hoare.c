@@ -1,4 +1,12 @@
 #include "sort.h"
+void swap(int *a, int *b)
+{
+	int tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
 /**
  * hoare_partition - Helper function for quicksort algorithm that partitions
  * the array into two segments: elements less than or equal to the pivot,
