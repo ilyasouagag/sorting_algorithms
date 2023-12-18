@@ -46,9 +46,5 @@ void bitonic_seq(int *array, size_t size, size_t start, size_t sq, char flag);
 void bitonic_sort(int *array, size_t size);
 size_t hoare_partition(int *array, size_t start, size_t finish, size_t size);
 void quick_sort_helper2(int *array, size_t start, size_t finish, size_t size);
-/*void quick_sort_hoare(int *array, size_t size);*/
-void qs(int *array, ssize_t first, ssize_t last, int size);
 void quick_sort_hoare(int *array, size_t size);
-int hoare_partition(int *array, int first, int last, int size);
-void swap(int *array, ssize_t item1, ssize_t item2);
 #endif

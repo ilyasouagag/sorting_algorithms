@@ -1,72 +1,73 @@
 #include "sort.h"
 /**
-*swap - the positions of two elements into an array
-*@array: array
-*@item1: array element
-*@item2: array element
-*/
-void swap(int *array, ssize_t item1, ssize_t item2)
-{
-	int tmp;
-
-	tmp = array[item1];
-	array[item1] = array[item2];
-	array[item2] = tmp;
-}
-/**
- *hoare_partition - hoare partition sorting scheme implementation
- *@array: array
- *@first: first array element
- *@last: last array element
- *@size: size array
- *Return: return the position of the last element sorted
+ * hoare_partition - Helper function for quicksort algorithm that partitions
+ * the array into two segments: elements less than or equal to the pivot,
+ * and elements greater than the pivot.
+ * @array: The array to be partitioned
+ * @start: The starting index of the segment to be partitioned
+ * @finish: The ending index of the segment to be partitioned
+ * @size: The size of the array
+ *
+ * Return: The index of the pivot element after partitioning
  */
-int hoare_partition(int *array, int first, int last, int size)
+size_t hoare_partition(int *array, size_t start, size_t finish, size_t size)
 {
-	int current = first - 1, finder = last + 1;
-	int pivot = array[last];
+	int *pivot, prev, next, tmp;
 
+	pivot = array + start;
+	prev = start - 1;
+	next = finish + 1;
 	while (1)
 	{
+		do {
+			prev++;
+		} while (array[prev] < *pivot);
+		do {
+			next--;
+		} while (array[next] > *pivot);
 
-		do {
-			current++;
-		} while (array[current] < pivot);
-		do {
-			finder--;
-		} while (array[finder] > pivot);
-		if (current >= finder)
-			return (current);
-		swap(array, current, finder);
-		print_array(array, size);
+		if (prev < next)
+		{
+			tmp = array[prev];
+			array[prev] = array[next];
+			array[next] = tmp;
+			print_array(array, size);
+		}
+		else
+			return (next);
 	}
 }
+
 /**
- *qs - qucksort algorithm implementation
- *@array: array
- *@first: first array element
- *@last: last array element
- *@size: array size
+ * quick_sort_helper_hoare - Helper function for the quicksort algorithm that
+ * recursively sorts subarrays.
+ * @array: The array to be sorted
+ * @start: The starting index of the subarray
+ * @finish: The ending index of the subarray
+ * @size: The size of the array
  */
-void qs(int *array, ssize_t first, ssize_t last, int size)
+void quick_sort_helper2(int *array, size_t start, size_t finish, size_t size)
 {
-	ssize_t position = 0;
+	size_t pivot;
 
-	if (first < last)
+	if (start < finish)
 	{
-		position = hoare_partition(array, first, last, size);
-		qs(array, first, position - 1, size);
-		qs(array, position, last, size);
+		pivot = hoare_partition(array, start, finish, size);
+
+		quick_sort_helper2(array, start, pivot, size);
+
+		quick_sort_helper2(array, pivot + 1, finish, size);
 	}
 }
+
 /**
- *quick_sort_hoare - prepare the terrain to quicksort algorithm
- *@array: array
- *@size: array size
+ * quick_sort_hoare - Sorts an array using the quicksort algorithm
+ * @array: The array to be sorted
+ * @size: The size of the array
  */
 void quick_sort_hoare(int *array, size_t size)
 {
-	if (!array || size < 2)
+	if (array == NULL || size < 2)
 		return;
-	qs(array, 0, size - 1, size);
+	quick_sort_helper2(array, 0, size - 1, size);
 }
